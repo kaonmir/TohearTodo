@@ -18,7 +18,8 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import xyz.kaonmir.toheartodo.R
-import xyz.kaonmir.toheartodo.SettingsActivity
+import xyz.kaonmir.toheartodo.view.book.BookActivity
+import xyz.kaonmir.toheartodo.view.sidebar.SettingsActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -63,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
+            val intent = Intent(this, BookActivity::class.java).apply{}
+            startActivity(intent)
+
             finish()
         })
 
@@ -115,20 +119,20 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.book_001_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.select -> {
-                val intent = Intent(this, SettingsActivity::class.java).apply{}
-                startActivity(intent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.book_001_main, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when(item.itemId) {
+//            R.id.select -> {
+//                val intent = Intent(this, SettingsActivity::class.java).apply{}
+//                startActivity(intent)
+//            }
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 }
 
 /**
@@ -141,7 +145,6 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         }
 
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
     })
 }

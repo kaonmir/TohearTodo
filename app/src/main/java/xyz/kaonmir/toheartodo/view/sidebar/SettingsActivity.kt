@@ -1,8 +1,10 @@
-package xyz.kaonmir.toheartodo
+package xyz.kaonmir.toheartodo.view.sidebar
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceFragmentCompat
+import xyz.kaonmir.toheartodo.R
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -16,6 +18,13 @@ class SettingsActivity : AppCompatActivity() {
                     .commit()
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            android.R.id.home -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
