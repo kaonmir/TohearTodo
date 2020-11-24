@@ -13,7 +13,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             modules(module {
-                single { BookRepository(BookDataSource()) }
+                single { BookRepository(BookDataSource(this@App)) }
 
             })
         }
