@@ -29,7 +29,6 @@ class HearActivity : AppCompatActivity() {
     private lateinit var textItem: TextView
 
     private val itemRepository: ItemRepository by inject()
-//    private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var textToSpeech: TextToSpeech
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,12 +37,6 @@ class HearActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         // Set TTS
-
-//        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
-//        val speechRecognizerIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-//        speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-
         textToSpeech = TextToSpeech(this) { status ->
             if(status == TextToSpeech.SUCCESS) {
                 val result = textToSpeech.setLanguage(Locale.KOREA)
@@ -58,7 +51,6 @@ class HearActivity : AppCompatActivity() {
         }
 
         // Get dataset
-
         val bid = intent.getIntExtra("bid", 0)
         dataset = itemRepository.getItemsNotDone(bid)
 

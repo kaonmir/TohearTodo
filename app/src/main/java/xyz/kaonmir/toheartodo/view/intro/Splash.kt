@@ -14,6 +14,8 @@ class Splash : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        supportActionBar?.hide()
+
         val handlerThread = HandlerThread("Sunghun")
         handlerThread.start()
 
@@ -22,6 +24,6 @@ class Splash : AppCompatActivity() {
             startActivity(intent)
 
             finish()
-        }, 500)
+        }, 1500)
     }
 }

@@ -1,5 +1,68 @@
 <resources>
     <string name="app_name">TohearTodo</string>
+    <string name="app_name_line_break">Tohear\nTodo</string>
+
+    <string name="sample_short">This is simple</string>
+    <string name="sample_middle"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. </string>
+    <string name="simple_long"> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. </string>
+
+    <string name="delete">삭제</string>
+    <string name="duplicate">복제</string>
+    <string name="move">이동</string>
+    <string name="archive">보관</string>
+    <string name="undo">실행취소</string>
+
+    <string name="intro_003_login_prefix"> 계속 진행하여 </string>
+    <string name="intro_003_login_service_policy"> <i> 서비스 약관 </i></string>
+    <string name="intro_003_login_middle">과</string>
+    <string name="intro_003_login_privacy_policy"> 개인 정보 취급 방침</string>
+    <string name="intro_003_login_postfix">에 동의하세요</string>
+
+    <string name="book_001_main_title"> 책꽂이 </string>
+    <string name="book_002_addBook_title">새로 추가할 책의 이름을 적어주세요</string>
+    <string name="book_003_selected">책을 선택해주세요</string>
+
+    <string name="book_004_more_duplicate">@string/duplicate</string>
+    <string name="book_004_more_delete">@string/delete</string>
+    <string name="book_004_more_archive">@string/archive</string>
+    <string name="book_004_more_share">공유</string>
+
+    <string name="book_005_done_complete"> 복사(이동) 완료</string>
+    <string name="book_005_done_undo">@string/undo</string>
+
+
+    <!--  Context.getString(int, Object...)-->
+    <string name="item_001_main_done">완료됨(%1$d개) </string>
+    <string name="item_002_addSound">아래 버튼을 누르고 말해주세요</string>
+    <string name="item_003_addText">항목을 새로 추가해주세요</string>
+    <string name="item_004_title">항목을 선택해주세요</string>
+    <string name="item_005_copyOrMove_title">이동(복사)할 책을 선택해주세요</string>
+
+    <string name="item_006_doneCopyOrMove_title">복사(이동) 완료</string>
+    <string name="item_006_doneCopyOrMove_move">해당 책으로 이동</string>
+
+    <string name="item_007_more_duplicate">@string/duplicate</string>
+    <string name="item_007_more_delete">@string/delete</string>
+    <string name="item_007_more_move">@string/move</string>
+
+    <string name="item_008_doneItem_title">완료된 항목으로 이동</string>
+    <string name="item_008_doneItem_undo">@string/undo</string>
+
+
+    <string name="hear_001_main_title">듣기모드</string>
+    <string name="hear_001_main_end">종료하기</string>
+    <string name="hear_001_main_lock">눌러서 잠그기</string>
+    <string name="hear_001_main_tip_title">TIP!</string>
+    <string name="hear_001_main_tip_content"> “다음” - 다음 항목으로 넘어갑니다. \n
+    “이전” - 이전 항목으로 돌아갑니다. \n
+    “다시” - 이번 항복을 다시 재생합니다.\n
+    “완료” - 이 항목을 삭제하고 다음 항목으로 넘어갑니다. \n
+    “종료” - 듣기 모드를 끝냅니다.</string>
+
+    <string name="hear_002_lock_unlock">눌러서 잠금해제</string>
+
+<!-- TODO("Sidebar") -->
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

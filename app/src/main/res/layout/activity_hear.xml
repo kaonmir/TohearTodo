@@ -18,8 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="듣기모드"
-            android:textFontWeight="600"
+            android:text="@string/hear_001_main_title"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +29,7 @@
             android:id="@+id/button_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="종료하기"
+            android:text="@string/hear_001_main_end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +47,7 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TIP!"
+            android:text="@string/hear_001_main_tip_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -58,18 +57,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="7dp"
             android:layout_marginEnd="7dp"
-            android:text="asdf\nasifsapof\aodsnfdasnfpnsafnsa\npnsdan"
+            android:text="@string/hear_001_main_tip_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="눌러서 잠그기"
+        android:text="@string/hear_001_main_lock"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -41,7 +41,7 @@
                 android:id="@+id/textView_done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="완료됨 (3개)"
+                android:text="@string/item_001_main_done"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/flip_button"
                 app:layout_constraintStart_toStartOf="parent"

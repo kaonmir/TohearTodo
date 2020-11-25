@@ -59,7 +59,7 @@ class ItemActivity : AppCompatActivity() {
 
         updateDoneNum(dataDone.size)
 
-        viewAdapter.setOnItemClickListener { view, pos ->
+        viewAdapter.setOnItemClickListener { _, pos ->
             dataDone.add(dataNotDone[pos])
             dataNotDone.removeAt(pos)
             viewAdapter.notifyItemRemoved(pos)
@@ -67,7 +67,7 @@ class ItemActivity : AppCompatActivity() {
             updateDoneNum(dataDone.size)
         }
 
-        viewAdapter_done.setOnItemClickListener { view, pos ->
+        viewAdapter_done.setOnItemClickListener { _, pos ->
             dataNotDone.add(dataDone[pos])
             dataDone.removeAt(pos)
             viewAdapter_done.notifyItemRemoved(pos)
@@ -109,6 +109,6 @@ class ItemActivity : AppCompatActivity() {
     }
 
     private fun updateDoneNum(size: Int) {
-        textView_done.text = "완료됨(${size}개)"
+        textView_done.text = resources.getString(R.string.item_001_main_done, size)
     }
 }
