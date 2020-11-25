@@ -2,7 +2,7 @@ package xyz.kaonmir.toheartodo.data
 
 import xyz.kaonmir.toheartodo.data.model.Book
 
-class BookRepository(dataSource: BookDataSource) {
+class BookRepository(private val dataSource: BookDataSource) {
     var books: ArrayList<Book> = dataSource.getBooks()
         private set
 
@@ -13,4 +13,6 @@ class BookRepository(dataSource: BookDataSource) {
     }
 
     fun getBook(pos: Int) = books[pos]
+
+    fun save() = dataSource.setBooks(books)
 }

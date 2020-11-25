@@ -1,5 +1,6 @@
 package xyz.kaonmir.toheartodo.view.book
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +17,7 @@ import com.google.android.material.navigation.NavigationView
 import org.koin.android.ext.android.inject
 import xyz.kaonmir.toheartodo.R
 import xyz.kaonmir.toheartodo.data.BookRepository
+import xyz.kaonmir.toheartodo.view.item.ItemActivity
 
 class BookActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -40,9 +42,10 @@ class BookActivity : AppCompatActivity() {
         }
 
         viewAdapter.setOnItemClickListener { view, pos ->
-            Log.i("Kaonmir", "$pos is clicked!!")
+            val intent = Intent(this, ItemActivity::class.java).apply{
+                this.putExtra("bid", bookRepository.getBook(pos).BID)
+            }
+            startActivity(intent)
         }
-
     }
-
 }
