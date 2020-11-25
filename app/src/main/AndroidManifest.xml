@@ -11,10 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TohearTodo">
-        <activity android:name=".view.item.ItemActivity"/>
+        <activity
+            android:name=".view.hearmode.HearActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_hear"
+            android:theme="@style/Theme.TohearTodo.Fullscreen"></activity>
+        <activity android:name=".view.item.ItemActivity" />
         <activity android:name=".view.book.BookActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

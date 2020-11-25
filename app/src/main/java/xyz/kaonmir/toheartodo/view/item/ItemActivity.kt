@@ -1,11 +1,9 @@
 package xyz.kaonmir.toheartodo.view.item
 
-import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.renderscript.ScriptGroup
 import android.text.InputType
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
@@ -17,6 +15,7 @@ import org.koin.android.ext.android.inject
 import xyz.kaonmir.toheartodo.R
 import xyz.kaonmir.toheartodo.data.ItemRepository
 import xyz.kaonmir.toheartodo.data.model.Item
+import xyz.kaonmir.toheartodo.view.hearmode.HearActivity
 
 class ItemActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -97,7 +96,12 @@ class ItemActivity : AppCompatActivity() {
                 builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
                 builder.show()
             }
-            R.id.menu_hear_mode -> TODO()
+            R.id.menu_hear_mode -> {
+                val intent = Intent(this, HearActivity::class.java).apply{
+                    this.putExtra("bid", bid)
+                }
+                startActivity(intent)
+            }
             R.id.menu_select -> TODO()
             else -> return super.onOptionsItemSelected(item)
         }

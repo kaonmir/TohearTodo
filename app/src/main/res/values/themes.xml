@@ -22,4 +22,16 @@
     <style name="Theme.TohearTodo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.TohearTodo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.TohearTodo.Fullscreen" parent="Theme.TohearTodo">
+        <item name="android:actionBarStyle">@style/Widget.Theme.TohearTodo.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+    <style name="ThemeOverlay.TohearTodo.FullscreenContainer" parent="">
+        <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
+        <item name="fullscreenTextColor">@color/light_blue_A200</item>
+    </style>
 </resources>
