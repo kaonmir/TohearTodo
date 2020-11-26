@@ -18,14 +18,14 @@
             android:theme="@style/Theme.TohearTodo.Fullscreen" />
         <activity android:name=".view.item.ItemActivity" />
         <activity android:name=".view.book.BookActivity">
-        </activity>
-        <activity android:name=".view.sidebar.SettingsActivity" />
-        <activity android:name=".view.intro.login.LoginActivity" />
-        <activity android:name=".view.intro.Splash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".view.sidebar.SettingsActivity" />
+        <activity android:name=".view.intro.login.LoginActivity" />
+        <activity android:name=".view.intro.Splash" >
         </activity>
     </application>
 

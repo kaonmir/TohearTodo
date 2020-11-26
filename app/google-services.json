@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "398246091374",
+    "firebase_url": "https://toheartodo.firebaseio.com",
+    "project_id": "toheartodo",
+    "storage_bucket": "toheartodo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398246091374:android:cb6fafdc78630388f6e47f",
+        "android_client_info": {
+          "package_name": "xyz.kaonmir.toheartodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398246091374-hfjfv8ahcrfkj9c8h900h7d4t29o8hfn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.kaonmir.toheartodo",
+            "certificate_hash": "5c9950e772fda88491dfe2738d876d4dfc1fa1dc"
+          }
+        },
+        {
+          "client_id": "398246091374-9frmu9lfltppd8b3dc8vpam8ucld0tub.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWc7T-vhoWZOBMZRoqCECoPSKlL3VYCu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398246091374-9frmu9lfltppd8b3dc8vpam8ucld0tub.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

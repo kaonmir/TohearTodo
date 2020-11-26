@@ -1,4 +1,6 @@
 <resources>
+<!--    <string name="default_web_client_id">134962452918-nrou383trjrqr777ivq1bg7m8647bp9t.apps.googleusercontent.com</string>-->
+
     <string name="app_name">TohearTodo</string>
     <string name="app_name_line_break">Tohear\nTodo</string>
 
@@ -12,11 +14,13 @@
     <string name="archive">보관</string>
     <string name="undo">실행취소</string>
 
+    <string name="intro_003_login_policy"> 계속 진행하여 <u>서비스 약관</u>과\n<u>개인 정보 취급 방침</u>에 동의하세요</string>
     <string name="intro_003_login_prefix"> 계속 진행하여 </string>
     <string name="intro_003_login_service_policy"> <i> 서비스 약관 </i></string>
     <string name="intro_003_login_middle">과</string>
     <string name="intro_003_login_privacy_policy"> 개인 정보 취급 방침</string>
     <string name="intro_003_login_postfix">에 동의하세요</string>
+    <string name="intro_003_login_google">구글 계정으로 로그인</string>
 
     <string name="book_001_main_title"> 책꽂이 </string>
     <string name="book_002_addBook_title">새로 추가할 책의 이름을 적어주세요</string>
