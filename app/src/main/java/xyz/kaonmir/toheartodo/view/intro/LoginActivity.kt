@@ -1,10 +1,9 @@
-package xyz.kaonmir.toheartodo.view.intro.login
+package xyz.kaonmir.toheartodo.view.intro
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -36,7 +35,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, gso)
-
         auth = Firebase.auth
 
         findViewById<SignInButton>(R.id.button_login_google).setOnClickListener(this)
@@ -72,7 +70,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
@@ -102,6 +99,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             Log.i(TAG, "There's a user!!")
             val intent = Intent(this, BookActivity::class.java).apply{}
             startActivity(intent)
+            finish()
         } else {
             Log.i(TAG, "There's no user!!")
         }

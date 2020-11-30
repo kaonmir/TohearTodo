@@ -14,6 +14,12 @@
     <string name="archive">보관</string>
     <string name="undo">실행취소</string>
 
+    <string name="next">다음</string>
+    <string name="previous">이전</string>
+    <string name="again">다시</string>
+    <string name="done">완료</string>
+    <string name="finish">종료</string>
+
     <string name="intro_003_login_policy"> 계속 진행하여 <u>서비스 약관</u>과\n<u>개인 정보 취급 방침</u>에 동의하세요</string>
     <string name="intro_003_login_prefix"> 계속 진행하여 </string>
     <string name="intro_003_login_service_policy"> <i> 서비스 약관 </i></string>
@@ -57,11 +63,11 @@
     <string name="hear_001_main_end">종료하기</string>
     <string name="hear_001_main_lock">눌러서 잠그기</string>
     <string name="hear_001_main_tip_title">TIP!</string>
-    <string name="hear_001_main_tip_content"> “다음” - 다음 항목으로 넘어갑니다. \n
-    “이전” - 이전 항목으로 돌아갑니다. \n
-    “다시” - 이번 항복을 다시 재생합니다.\n
-    “완료” - 이 항목을 삭제하고 다음 항목으로 넘어갑니다. \n
-    “종료” - 듣기 모드를 끝냅니다.</string>
+    <string name="hear_001_main_tip_content"> “다음” - 다음 항목으로 넘어갑니다.
+    \n“이전” - 이전 항목으로 돌아갑니다.
+    \n“다시” - 이번 항복을 다시 재생합니다.
+    \n“완료” - 이 항목을 삭제하고 다음 항목으로 넘어갑니다.
+    \n“종료” - 듣기 모드를 끝냅니다.</string>
 
     <string name="hear_002_lock_unlock">눌러서 잠금해제</string>
 
