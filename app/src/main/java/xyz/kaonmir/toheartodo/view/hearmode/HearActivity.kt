@@ -86,7 +86,7 @@ class HearActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        timer.cancel()
+//        timer.cancel()
         textToSpeech.let {
             it.stop()
             it.shutdown()
@@ -102,12 +102,12 @@ class HearActivity : AppCompatActivity() {
         speechRecognizer.stopListening()
         speechRecognizer.startListening(speechIntent)
 
-        timer = timer(period = SPEECH_LIMIT_TIME) {
-            speechRecognizer.cancel()
-            speechRecognizer.stopListening()
-            startListening()
-            this.cancel()
-        }
+//        timer = timer(period = SPEECH_LIMIT_TIME) {
+//            speechRecognizer.cancel()
+//            speechRecognizer.stopListening()
+//            startListening()
+//            this.cancel()
+//        }
     }
 
     private fun refreshText() {
