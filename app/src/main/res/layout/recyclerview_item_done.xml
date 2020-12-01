@@ -16,7 +16,7 @@
         app:srcCompat="@drawable/ic_circle" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textView_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/recycler_view_item_margin_left"

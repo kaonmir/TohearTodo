@@ -6,47 +6,40 @@ import xyz.kaonmir.toheartodo.data.model.Book
 import java.io.*
 import java.io.File.separator
 
-class BookDataSource(context: Context) {
-    private val directory = context.filesDir
-    private val file = File(directory, "asdf.txt")
-
-    fun getBooks(): ArrayList<Book> {
-        val books = ArrayList<Book>()
-
-        try {
-            val buf = BufferedReader(FileReader(file))
-            var line: String? = buf.readLine()
-            while (line != null) {
-                val book = Book.fromString(separator, line)
-                book?.let { books.add(book) }
-                line = buf.readLine()
-            }
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        return books
-    }
-
-    fun setBooks(books: ArrayList<Book>) {
-        try {
-            val buf = BufferedWriter(FileWriter(file))
-            for (book in books) {
-                buf.write(book.toString(separator))
-                buf.newLine()
-            }
-            buf.close()
-        }  catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
-
+class BookDataSource(private val context: Context) {
     companion object {
-        const val separator = ";"
+        const val TAG = "BookDataSource"
+        const val FILE_NAME = "data.pref"
     }
 
+    fun saveBooks(books: MutableList<Book>) {
+        try {
+            val fileOutputStream  = context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE)
+            val output = ObjectOutputStream(fileOutputStream)
+
+            output.writeObject(books)
+
+            output.close()
+            fileOutputStream.close()
+
+            Log.i(TAG, "Save complete!")
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun getBooks(): MutableList<Book> {
+        var savedArrayList: MutableList<Book>? = null
+        try {
+            val inputStream = context.openFileInput(FILE_NAME)
+            val input = ObjectInputStream(inputStream)
+            savedArrayList = input.readObject() as MutableList<Book>?
+            input.close()
+            inputStream.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        return savedArrayList ?: mutableListOf()
+    }
 }

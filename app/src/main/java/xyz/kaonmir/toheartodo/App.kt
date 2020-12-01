@@ -11,8 +11,6 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import xyz.kaonmir.toheartodo.data.BookDataSource
 import xyz.kaonmir.toheartodo.data.BookRepository
-import xyz.kaonmir.toheartodo.data.ItemDataSource
-import xyz.kaonmir.toheartodo.data.ItemRepository
 
 class App : Application() {
     init {
@@ -21,7 +19,6 @@ class App : Application() {
             androidLogger()
             modules(module {
                 single { BookRepository(BookDataSource(this@App)) }
-                single { ItemRepository(ItemDataSource(this@App)) }
 
             })
         }

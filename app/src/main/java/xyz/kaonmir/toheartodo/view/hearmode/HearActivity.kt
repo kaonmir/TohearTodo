@@ -1,28 +1,19 @@
 package xyz.kaonmir.toheartodo.view.hearmode
 
-import android.R.id.message
 import android.content.Intent
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.os.Handler
-import android.os.Looper
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.channels.ticker
 import org.koin.android.ext.android.inject
 import xyz.kaonmir.toheartodo.R
-import xyz.kaonmir.toheartodo.data.ItemRepository
+import xyz.kaonmir.toheartodo.data.BookRepository
 import xyz.kaonmir.toheartodo.data.model.Item
-import xyz.kaonmir.toheartodo.view.intro.LoginActivity
 import java.util.*
-import kotlin.concurrent.timer
-import kotlin.concurrent.timerTask
 
 
 class HearActivity : AppCompatActivity() {
@@ -31,11 +22,12 @@ class HearActivity : AppCompatActivity() {
         const val SPEECH_LIMIT_TIME = 3000L
     }
 
-    private var mark = 0
-    private lateinit var dataset: List<Item>
+    private var posBook = 0
+    private var posItem = 0
+    private lateinit var dataset: MutableList<Item>
     private lateinit var textItem: TextView
 
-    private val itemRepository: ItemRepository by inject()
+    private val bookRepository: BookRepository by inject()
     private lateinit var textToSpeech: TextToSpeech // For TTS
     private lateinit var speechRecognizer: SpeechRecognizer // For STT
     private val speechIntent: Intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
@@ -73,8 +65,8 @@ class HearActivity : AppCompatActivity() {
         }
 
         // Get dataset
-        val bid = this.intent.getIntExtra("bid", 0)
-        dataset = itemRepository.getItemsNotDone(bid)
+        posBook = this.intent.getIntExtra("pos", 0)
+        dataset = bookRepository.books[posBook].notDoneItems
 
         textItem = findViewById(R.id.textView_item)
         textItem.text = dataset[0].text
@@ -111,23 +103,35 @@ class HearActivity : AppCompatActivity() {
     }
 
     private fun refreshText() {
-        textItem.text = dataset[mark].text
+        textItem.text = dataset[posItem].text
     }
 
     private fun speak() {
-        textToSpeech.speak(dataset[mark].text, TextToSpeech.QUEUE_FLUSH, null, null)
+        textToSpeech.speak(dataset[posItem].text, TextToSpeech.QUEUE_FLUSH, null, null)
     }
 
     private fun prevItem() {
-        if(mark > 0) mark--
+        if(posItem > 0) posItem--
         refreshText()
         speak()
     }
 
     private fun nextItem() {
-        if(mark < dataset.size - 1) mark++
+        if(posItem < dataset.size - 1) posItem++
         refreshText()
         speak()
+    }
+
+    private fun done() {
+        bookRepository.done(posBook, posItem)
+
+        if(dataset.size == 0) {
+            Toast.makeText(this, "모두 완료하였습니다.", Toast.LENGTH_SHORT).show()
+            finish()
+        } else {
+            refreshText()
+            speak()
+        }
     }
 
     inner class MyRecognitionListener: RecognitionListener {
@@ -162,7 +166,6 @@ class HearActivity : AppCompatActivity() {
         }
 
         override fun onResults(results: Bundle?) {
-
             val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             if (matches != null) {
                 val message = matches.joinToString()
@@ -172,7 +175,7 @@ class HearActivity : AppCompatActivity() {
                     NEXT -> nextItem()
                     PREVIOUS -> prevItem()
                     AGAIN -> speak()
-                    DONE -> TODO("remove from this not-done array")
+                    DONE -> done()
                     FINISH -> this@HearActivity.finish()
                 }
                 when (message) {

@@ -8,12 +8,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.koin.android.ext.android.inject
 import xyz.kaonmir.toheartodo.R
-import xyz.kaonmir.toheartodo.data.ItemRepository
+import xyz.kaonmir.toheartodo.data.BookRepository
 import xyz.kaonmir.toheartodo.data.model.Item
 import xyz.kaonmir.toheartodo.view.hearmode.HearActivity
 
@@ -27,11 +28,11 @@ class ItemActivity : AppCompatActivity() {
 
     private lateinit var textView_done: TextView
 
-    private var bid: Int = 0
+    private var posBook: Int = 0
     private lateinit var  dataNotDone: MutableList<Item>
     private lateinit var dataDone: MutableList<Item>
 
-    private val itemRepository: ItemRepository by inject()
+    private val bookRepository: BookRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +40,9 @@ class ItemActivity : AppCompatActivity() {
 
         textView_done = findViewById(R.id.textView_done)
 
-        bid = intent.getIntExtra("bid", 0)
-        dataNotDone = itemRepository.getItemsNotDone(bid).toMutableList()
-        dataDone = itemRepository.getItemsDone(bid).toMutableList()
+        posBook = intent.getIntExtra("pos", 0)
+        dataNotDone = bookRepository.books[posBook].notDoneItems
+        dataDone = bookRepository.books[posBook].doneItems
 
         viewManager = LinearLayoutManager(this)
         viewManager_done = LinearLayoutManager(this)
@@ -57,22 +58,16 @@ class ItemActivity : AppCompatActivity() {
             adapter = viewAdapter_done
         }
 
-        updateDoneNum(dataDone.size)
+        updateUI()
 
         viewAdapter.setOnItemClickListener { _, pos ->
-            dataDone.add(dataNotDone[pos])
-            dataNotDone.removeAt(pos)
-            viewAdapter.notifyItemRemoved(pos)
-            viewAdapter_done.notifyItemInserted(dataDone.size-1)
-            updateDoneNum(dataDone.size)
+            bookRepository.done(posBook, pos)
+            updateUI()
         }
 
         viewAdapter_done.setOnItemClickListener { _, pos ->
-            dataNotDone.add(dataDone[pos])
-            dataDone.removeAt(pos)
-            viewAdapter_done.notifyItemRemoved(pos)
-            viewAdapter.notifyItemInserted(dataNotDone.size)
-            updateDoneNum(dataDone.size)
+            bookRepository.undone(posBook, pos)
+            updateUI()
         }
     }
 
@@ -90,17 +85,21 @@ class ItemActivity : AppCompatActivity() {
                 input.inputType = InputType.TYPE_CLASS_TEXT
                 builder.setView(input)
                 builder.setPositiveButton("OK") { _, _ ->
-                    dataNotDone.add(Item(10, bid, input.text.toString(), false))
+                    bookRepository.addItem(posBook, Item(10, input.text.toString(), false))
                     viewAdapter.notifyItemInserted(dataNotDone.size)
                 }
                 builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
                 builder.show()
             }
             R.id.menu_hear_mode -> {
-                val intent = Intent(this, HearActivity::class.java).apply{
-                    this.putExtra("bid", bid)
+                if(dataNotDone.size != 0) {
+                    val intent = Intent(this, HearActivity::class.java).apply{
+                        this.putExtra("pos", posBook)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@ItemActivity, "항목이 하나도 없습니다.", Toast.LENGTH_SHORT).show()
                 }
-                startActivity(intent)
             }
             R.id.menu_select -> TODO()
             else -> return super.onOptionsItemSelected(item)
@@ -108,7 +107,17 @@ class ItemActivity : AppCompatActivity() {
         return true
     }
 
-    private fun updateDoneNum(size: Int) {
-        textView_done.text = resources.getString(R.string.item_001_main_done, size)
+     // TODO("저장하는 거 매우 이상하다. ㅠㅠㅠ")
+    private fun updateUI() {
+         val size = dataDone.size
+         textView_done.text = resources.getString(R.string.item_001_main_done, size)
+         bookRepository.save()
+         viewAdapter.notifyDataSetChanged()
+         viewAdapter_done.notifyDataSetChanged()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateUI()
     }
 }
